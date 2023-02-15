@@ -1,50 +1,70 @@
-import { Inner, Title, Row, Label, Input, ContentInput, Column, AddressInput, AddressButton, DetailedAddressInput, AttachBoxList, AttachBox, RadioBox, RadioBoxLabel, ButtonBox, MainButton } from "@/styles/postForm";
+import { Button } from "@/styles/common/button";
+import { Input, Textarea, TitleLabel } from "@/styles/common/input";
+import { Row, ContentsTitle, ContentsWrap, Column } from "@/styles/layout";
+
 
 const PostForm = () => {
 
     return(
-        <Inner>
-            <Title>게시물 등록</Title>
-            <Row>
-                <Label>제목</Label>
-                <Input type="text" placeholder="제목을 작성해주세요." />
-            </Row>
-            <Row>
-                <Label>내용</Label>
-                <ContentInput type="text" placeholder="내용을 작성해주세요." />
-            </Row>
-            <Row>
-                <Label>주소</Label>
+        <ContentsWrap>
+            <ContentsTitle>게시물 등록</ContentsTitle>
+
+            <Row gap="24">
                 <Column>
-                    <AddressInput placeholder="57250" />
-                    <AddressButton>우편번호 검색</AddressButton>
+                    <TitleLabel htmlFor="id">작성자</TitleLabel>
+                    <Input type="text" id="id" placeholder="이름을 적어주세요."/>
                 </Column>
-                <DetailedAddressInput type="text" />
-                <DetailedAddressInput type="text" />
+                <Column>
+                    <TitleLabel htmlFor="password">비밀번호</TitleLabel>
+                    <Input type="password" id="password" placeholder="비밀번호를 적어주세요."/>
+                </Column>
             </Row>
-            <Row>
-                <Label>유튜브</Label>
-                <Input type="text" placeholder="링크를 복사해주세요." />
-            </Row>
-            <Row>
-                <Label>사진첨부</Label>
-                <AttachBoxList>
-                    <AttachBox>Upload</AttachBox>
-                    <AttachBox>Upload</AttachBox>
-                    <AttachBox>Upload</AttachBox>
-                </AttachBoxList>
-            </Row>
-            <Row>
-                <Label>메인 설정</Label>
-                <RadioBox type="radio" id="youtube"/>
-                <RadioBoxLabel htmlFor="youtube">유튜브</RadioBoxLabel>
-                <RadioBox type="radio" id="photo"/>
-                <RadioBoxLabel htmlFor="photo">사진</RadioBoxLabel>
-            </Row>
-            <ButtonBox>
-                <MainButton>등록하기</MainButton>
-            </ButtonBox>
-        </Inner>
+            <Column>
+                <TitleLabel htmlFor="title">제목</TitleLabel>
+                <Input type="text" id="title" placeholder="제목을 작성해주세요."/>
+            </Column>
+            <Column>
+                <TitleLabel htmlFor="contents">내용</TitleLabel>
+                <Textarea height="400" id="contents" placeholder="내용을 작성해주세요."></Textarea>
+            </Column>
+            <Column>
+                <TitleLabel htmlFor="address">주소</TitleLabel>
+                <Row gap="16">
+                    <Input width="auto" size="5" type="text" id="address" placeholder="07250" />
+                    <Button color="black" size="m" className="btn btn-square btn-black btn-m">우편번호 검색</Button>
+                </Row>
+                <Input type="text" />
+                <Input type="text" />
+            </Column>
+            <Column>
+                <TitleLabel htmlFor="youtube-link">유튜브</TitleLabel>
+                <Input type="text" id="youtube-link" placeholder="링크를 복사해주세요." />
+            </Column>
+            <Column>
+                <TitleLabel>사진 첨부</TitleLabel>
+                <ul className="list">
+                    <li>Upload</li>
+                    <li>Upload</li>
+                    <li>Upload</li>
+                </ul>
+            </Column>
+            <Column>
+                <TitleLabel>메인 설정</TitleLabel>
+                <Row gap="22">
+                    <div className="radio-box">
+                        <input type="radio" id="youtube" />
+                        <label htmlFot="youtube">유튜브</label>
+                    </div>
+                    <div className="radio-box">
+                        <input type="radio" id="photo" />
+                        <label htmlFot="photo">사진</label>
+                    </div>
+                </Row>
+            </Column>
+            <div className="btn-box">
+                <Button color="brand" size="lg">등록하기</Button>
+            </div>
+        </ContentsWrap>
     );
 
 };
