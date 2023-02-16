@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Common } from "./Common";
+import { Common } from "./common";
 import addIcon from '../public/icon/add_icon.png';
 
 
