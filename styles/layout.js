@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import { Common } from "./common";
 
 
@@ -7,18 +6,23 @@ export const ContentsWrap = styled.div({
     width: '1200px',
     margin: '10rem auto',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-    padding: '8rem'
+    padding: '6rem'
 });
 
 export const ContentsTitle = styled.h1({
     fontSize: Common.fontSize.fs36,
     fontWeight: Common.fontWeight.fw700,
     textAlign: 'center',
-    paddingBottom: '8rem'
+});
+
+export const Contents = styled.div({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4rem',
+    padding: '10rem 0'
 });
 
 export const Column = styled.div({
-    paddingBottom: '4rem',
     display: 'flex',
     flexDirection: 'column',
     gap: '1.6rem'
