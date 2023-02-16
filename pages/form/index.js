@@ -1,6 +1,7 @@
-import { Button } from "@/styles/common/button";
-import { Input, Textarea, TitleLabel } from "@/styles/common/input";
-import { Row, ContentsTitle, ContentsWrap, Column } from "@/styles/layout";
+import { Button } from "@/styles/button";
+import { Input, RadioBox, Textarea, TitleLabel } from "@/styles/input";
+import { Row, ContentsTitle, ContentsWrap, Column, ButtonBox } from "@/styles/layout";
+import { AttatchPhotoList } from '@/styles/list';
 
 
 const PostForm = () => {
@@ -9,7 +10,7 @@ const PostForm = () => {
         <ContentsWrap>
             <ContentsTitle>게시물 등록</ContentsTitle>
 
-            <Row gap="24">
+            <Row gap="2.4" pattern="stretch">
                 <Column>
                     <TitleLabel htmlFor="id">작성자</TitleLabel>
                     <Input type="text" id="id" placeholder="이름을 적어주세요."/>
@@ -29,8 +30,8 @@ const PostForm = () => {
             </Column>
             <Column>
                 <TitleLabel htmlFor="address">주소</TitleLabel>
-                <Row gap="16">
-                    <Input width="auto" size="5" type="text" id="address" placeholder="07250" />
+                <Row gap="1.6">
+                    <Input width="7.7" size="1" type="text" id="address" placeholder="07250" />
                     <Button color="black" size="m" className="btn btn-square btn-black btn-m">우편번호 검색</Button>
                 </Row>
                 <Input type="text" />
@@ -42,28 +43,28 @@ const PostForm = () => {
             </Column>
             <Column>
                 <TitleLabel>사진 첨부</TitleLabel>
-                <ul className="list">
+                <AttatchPhotoList>
                     <li>Upload</li>
                     <li>Upload</li>
                     <li>Upload</li>
-                </ul>
+                </AttatchPhotoList>
             </Column>
             <Column>
                 <TitleLabel>메인 설정</TitleLabel>
-                <Row gap="22">
-                    <div className="radio-box">
-                        <input type="radio" id="youtube" />
-                        <label htmlFot="youtube">유튜브</label>
-                    </div>
-                    <div className="radio-box">
-                        <input type="radio" id="photo" />
-                        <label htmlFot="photo">사진</label>
-                    </div>
+                <Row gap="2.2">
+                    <RadioBox>
+                        <input type="radio" name="main" id="youtube" checked />
+                        <label htmlFor="youtube">유튜브</label>
+                    </RadioBox>
+                    <RadioBox>
+                        <input type="radio" name="main" id="photo" />
+                        <label htmlFor="photo">사진</label>
+                    </RadioBox>
                 </Row>
             </Column>
-            <div className="btn-box">
+            <ButtonBox align="center">
                 <Button color="brand" size="lg">등록하기</Button>
-            </div>
+            </ButtonBox>
         </ContentsWrap>
     );
 
