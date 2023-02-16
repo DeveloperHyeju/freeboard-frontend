@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Common } from "./Common";
+import { Common } from "./common";
 
 
 const base = css({

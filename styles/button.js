@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Common } from "./Common";
+import { Common } from "./common";
 
 const base = styled.button({
     fontWeight: Common.fontWeight.fw500
