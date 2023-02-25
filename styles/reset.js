@@ -24,7 +24,8 @@ table {border-collapse:collapse;border-spacing:0;}
 
 /* custom */
 html{font-size:10px;}
-body{font-size:1.6rem;}
+body{font-size:1.6rem;line-height:1.5;font-family: 'Noto Sans KR', sans-serif;
+color:#000;font-weight:400;letter-spacing:-0.045em;}
 body,input,select,textarea,button{line-height:1.5;font-family: 'Noto Sans KR', sans-serif;
 color:#000;font-weight:400;letter-spacing:-0.045em;}
 div,li,p,span,a,button,input,select,textarea{position:relative; box-sizing:border-box;}
