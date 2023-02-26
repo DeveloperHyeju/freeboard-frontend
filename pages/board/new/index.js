@@ -1,6 +1,14 @@
 import { AddressBox, AddressSearchButton, ButtonBox, Contents, ContentsWrap, ErrorMessage, Form, Input, InputBox, InputTitle, InputWrap, PhotoBox, PhotoList, Radio, RadioBox, Textarea, Title, Wrap, YellowButton } from "@/styles/boardForm";
+import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!){
+        createBoard(createBoardInput: $createBoardInput){
+            _id
+        }
+    }
+`
 
 const PostForm = () => {
 
@@ -13,6 +21,8 @@ const PostForm = () => {
     const [ errorPassword, setErrorPassword ] = useState('');
     const [ errorTitle, setErrorTitle ] = useState('');
     const [ errorContents, setErrorContents ] = useState('');
+
+    const [ createBoard ] = useMutation(CREATE_BOARD);
 
     const onChangeWriter = (e) => {
         const { value } = e.target;
@@ -34,24 +44,44 @@ const PostForm = () => {
         setContents(value);
     };
 
-    const onSubmitPost = (e) => {
+    const onSubmitPost = async(e) => {
         e.preventDefault();
 
         if (!writer) {
             setErrorWriter("작성자를 적어주세요.");
         }
 
-        if(!password) {
+        if (!password) {
             setErrorPassword("비밀번호를 적어주세요.");
         }
 
-        if(!title) {
+        if (!title) {
             setErrorTitle("제목을 적어주세요.");
         }
 
-        if(!contents) {
+        if (!contents) {
             setErrorContents("내용을 적어주세요.")
         }
+
+        if (writer && password && title && contents) {
+
+            const result = await createBoard({
+                variables: {
+                    createBoardInput: {
+                        writer,
+                        password,
+                        title,
+                        contents,
+                    }
+                }
+            });
+    
+            if(result.data.createBoard._id) {
+                alert('게시물이 등록되었습니다.');
+            }
+
+        }
+
     };
 
     return(
