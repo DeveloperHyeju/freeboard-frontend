@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 
 export const Wrap = styled.div({
-    padding: "8rem",
+    padding: "8rem 0",
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
 });
 
 export const ContentsWrap = styled.div({
     display: "flex",
     maxWidth: "120rem",
-    flex: "1 1 auto",
+    width: "100%",
     boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
 });
 
@@ -90,22 +91,11 @@ export const BoardTitle = styled.h2({
     fontWeight: "700",
 });
 
-export const BoardImage = styled.img({
-    maxWidth: "100%",
-    flex: "1 1 auto",
-});
-
 export const BoardContents = styled.pre({
     width: "100%",
 });
 
-export const BoardVideo = styled.img({
-    margin: "8rem 0",
-    maxWidth: "100%",
-    flex: "1 1 auto",
-});
-
-export const ButtonBox = styled.div({
+export const LikeButtonBox = styled.div({
     display: "flex",
     gap: "4rem",
     justifyContent: "center",
@@ -123,4 +113,20 @@ export const DisLikeButton = styled.button({
     flexDirection: "column",
     alignItems: "center",
     color: "#828282"
+});
+
+
+export const BoardButtonBox = styled.div({
+    display: "flex",
+    justifyContent: "center",
+    gap: "2.4rem",
+    alignItems: "center",
+    padding: "8rem 0",
+});
+
+
+export const BoardControlButton = styled.button({
+    padding: "1.4rem 6rem",
+    border: "1px solid #BDBDBD",
+    fontWeight: "500",
 });

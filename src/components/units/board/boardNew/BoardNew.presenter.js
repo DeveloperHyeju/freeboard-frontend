@@ -1,7 +1,7 @@
-import * as style from "./BoardWrite.styles";
+import * as style from "./BoardNew.styles";
 
 
-const BoardWriteUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onSubmitPost, errorWriter, errorPassword, errorTitle, errorContents}) => {
+const BoardNewUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onSubmitPost, errorWriter, errorPassword, errorTitle, errorContents, changeColor}) => {
 
     return(
         <style.Wrap>
@@ -67,7 +67,7 @@ const BoardWriteUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChange
                         </style.InputBox>
                     </style.Contents>
                     <style.ButtonBox>
-                        <style.YellowButton>등록하기</style.YellowButton>
+                        <style.YellowButton changeColor={changeColor}>등록하기</style.YellowButton>
                     </style.ButtonBox>
                 </style.Form>
             </style.ContentsWrap>
@@ -77,4 +77,4 @@ const BoardWriteUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChange
 };
 
 
-export default BoardWriteUI;
+export default BoardNewUI;

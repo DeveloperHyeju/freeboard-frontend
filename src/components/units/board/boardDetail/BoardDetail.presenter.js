@@ -1,14 +1,12 @@
 import * as style from "./BaordDetail.styles";
 import userIcon from "../../../../../public/icon/user_icon.png";
-import boardImage from "../../../../../public/board_img.jpg";
-import boardVideo from "../../../../../public/board_video.jpg";
 import likeIcon from "../../../../../public/icon/like_icon.png";
 import disLikeIcon from "../../../../../public/icon/dislike_icon.png";
 import linkIcon from "../../../../../public/icon/link_icon.png";
 import locationIcon from "../../../../../public/icon/location_icon.png";
 
 
-const BoardDetailUI = ({data}) => {
+const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}) => {
 
     return(
         <style.Wrap>
@@ -29,16 +27,25 @@ const BoardDetailUI = ({data}) => {
                     </style.BoardHeader>
                     <style.Contents>
                         <style.BoardTitle>{data?.fetchBoard.title}</style.BoardTitle>
-                        <style.BoardImage src={boardImage.src} alt="게시글 이미지"/>
                         <style.BoardContents>{data?.fetchBoard.contents}</style.BoardContents>
-                        <style.BoardVideo src={boardVideo.src} alt="영상" />
                     </style.Contents>
-                    <style.ButtonBox>
+                    <style.LikeButtonBox>
                         <style.LikeButton><img src={likeIcon.src} alt="좋아요" />{data?.fetchBoard.likeCount}</style.LikeButton>
                         <style.DisLikeButton><img src={disLikeIcon.src} alt="싫어요" />{data?.fetchBoard.dislikeCount}</style.DisLikeButton>
-                    </style.ButtonBox>
+                    </style.LikeButtonBox>
                 </style.Board>
             </style.ContentsWrap>
+            <style.BoardButtonBox>
+                <style.BoardControlButton
+                    onClick={onClickMoveToBoards}>
+                    목록으로
+                </style.BoardControlButton>
+                <style.BoardControlButton
+                    onClick={e => onClickMoveToBoardEdit(data?.fetchBoard._id)}>
+                    수정하기
+                </style.BoardControlButton>
+                <style.BoardControlButton>삭제하기</style.BoardControlButton>
+            </style.BoardButtonBox>
         </style.Wrap>
     );
 

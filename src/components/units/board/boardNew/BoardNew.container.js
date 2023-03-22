@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import BoardWriteUI from "./BoardWrite.presenter";
-import CREATE_BOARD from "./BoardWrite.queries";
+import BoardNewUI from "./BoardNew.presenter";
+import CREATE_BOARD from "./BoardNew.queries";
 
 
-const BoardWrite = () => {
+const BoardNew = () => {
 
     const [ writer, setWriter ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -17,6 +17,8 @@ const BoardWrite = () => {
     const [ errorTitle, setErrorTitle ] = useState('');
     const [ errorContents, setErrorContents ] = useState('');
 
+    const [ changeColor, setChangeColor ] = useState(false);
+
     const [ createBoard ] = useMutation(CREATE_BOARD);
 
     const router = useRouter();
@@ -24,21 +26,45 @@ const BoardWrite = () => {
     const onChangeWriter = (e) => {
         const { value } = e.target;
         setWriter(value);
+
+        if (value && password && title && contents) {
+            setChangeColor(true);
+        } else {
+            setChangeColor(false);
+        }
     };
 
     const onChangePassword = (e) => {
         const { value } = e.target;
         setPassword(value);
+
+        if (writer && value && title && contents) {
+            setChangeColor(true);
+        } else {
+            setChangeColor(false);
+        }
     };
 
     const onChangeTitle = (e) => {
         const { value } = e.target;
         setTitle(value);
+
+        if (writer && password && value && contents) {
+            setChangeColor(true);
+        } else {
+            setChangeColor(false);
+        }
     };
 
     const onChangeContents = (e) => {
         const { value } = e.target;
         setContents(value);
+
+        if (writer && password && title && value) {
+            setChangeColor(true);
+        } else {
+            setChangeColor(false);
+        }
     };
 
     const onSubmitPost = async(e) => {
@@ -83,7 +109,7 @@ const BoardWrite = () => {
 
     };
 
-    return <BoardWriteUI 
+    return <BoardNewUI 
                 onChangeWriter={onChangeWriter}
                 onChangePassword={onChangePassword}
                 onChangeTitle={onChangeTitle}
@@ -92,9 +118,10 @@ const BoardWrite = () => {
                 errorWriter={errorWriter}
                 errorPassword={errorPassword}
                 errorTitle={errorTitle}
-                errorContents={errorContents}/>;
+                errorContents={errorContents}
+                changeColor={changeColor}/>;
 
 };
 
 
-export default BoardWrite;
+export default BoardNew;
