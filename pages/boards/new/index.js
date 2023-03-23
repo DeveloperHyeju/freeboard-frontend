@@ -1,9 +1,9 @@
-import BoardNew from "@/src/components/units/board/boardNew/BoardNew.container";
+import BoardForm from "@/src/components/units/board/boardForm/BoardForm.container";
 
 
 const BoardNewPage = () => {
 
-    return <BoardNew />;
+    return <BoardForm isEdit={false} />;
 
 };
 

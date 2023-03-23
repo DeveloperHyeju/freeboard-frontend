@@ -4,6 +4,7 @@ import likeIcon from "../../../../../public/icon/like_icon.png";
 import disLikeIcon from "../../../../../public/icon/dislike_icon.png";
 import linkIcon from "../../../../../public/icon/link_icon.png";
 import locationIcon from "../../../../../public/icon/location_icon.png";
+import { setDate } from "@/src/commons/libraries/utils";
 
 
 const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}) => {
@@ -17,7 +18,7 @@ const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}) => {
                             <style.ProfileIcon src={userIcon.src} alt="프로필 이미지" />
                             <style.ProfileInfo>
                                 <style.ProfileName>{data?.fetchBoard.writer}</style.ProfileName>
-                                <style.ProfileDate>Date : {data?.fetchBoard.updatedAt.slice(0, 10).replaceAll("-", ".")}</style.ProfileDate>
+                                <style.ProfileDate>{setDate(data?.fetchBoard.updatedAt)}</style.ProfileDate>
                             </style.ProfileInfo>
                         </style.Profile>
                         <style.Features>

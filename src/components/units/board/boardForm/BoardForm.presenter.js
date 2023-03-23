@@ -1,13 +1,13 @@
-import * as style from "./BoardNew.styles";
+import * as style from "./BoardForm.styles";
 
 
-const BoardNewUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onSubmitPost, errorWriter, errorPassword, errorTitle, errorContents, changeColor}) => {
+const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onClickSubmitPost, onClickUpdatePost, errorWriter, errorPassword, errorTitle, errorContents, changeColor, isEdit}) => {
 
     return(
         <style.Wrap>
             <style.ContentsWrap>
-                <style.Form onSubmit={onSubmitPost}>
-                    <style.Title>게시물 등록</style.Title>
+                <style.Form onSubmit={isEdit ? onClickUpdatePost : onClickSubmitPost}>
+                    <style.Title>게시물 {isEdit ? "수정" : "등록"}</style.Title>
                     <style.Contents>
                         <style.InputWrap>
                             <style.InputBox>
@@ -67,7 +67,10 @@ const BoardNewUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeCo
                         </style.InputBox>
                     </style.Contents>
                     <style.ButtonBox>
+                        {isEdit ? 
+                        <style.YellowButton changeColor={changeColor}>수정하기</style.YellowButton> :
                         <style.YellowButton changeColor={changeColor}>등록하기</style.YellowButton>
+                        }
                     </style.ButtonBox>
                 </style.Form>
             </style.ContentsWrap>
@@ -77,4 +80,4 @@ const BoardNewUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeCo
 };
 
 
-export default BoardNewUI;
+export default BoardFormUI;
