@@ -1,7 +1,7 @@
 import * as style from "./BoardForm.styles";
 
 
-const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onClickSubmitPost, onClickUpdatePost, errorWriter, errorPassword, errorTitle, errorContents, changeColor, isEdit}) => {
+const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onClickSubmitPost, onClickUpdatePost, errorWriter, errorPassword, errorTitle, errorContents, isActive, isEdit, data}) => {
 
     return(
         <style.Wrap>
@@ -12,7 +12,7 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                         <style.InputWrap>
                             <style.InputBox>
                                 <style.InputTitle>작성자</style.InputTitle>
-                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} />
+                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} value={data?.fetchBoard.writer} />
                                 <style.ErrorMessage>{errorWriter}</style.ErrorMessage>
                             </style.InputBox>
                             <style.InputBox>
@@ -23,12 +23,12 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                         </style.InputWrap>
                         <style.InputBox>
                             <style.InputTitle>제목</style.InputTitle>
-                            <style.Input type="text" placeholder="제목을 적어주세요." onChange={onChangeTitle} />
+                            <style.Input type="text" placeholder="제목을 적어주세요." onChange={onChangeTitle} defaultValue={data?.fetchBoard.title} />
                             <style.ErrorMessage>{errorTitle}</style.ErrorMessage>
                         </style.InputBox>
                         <style.InputBox>
                             <style.InputTitle>내용</style.InputTitle>
-                            <style.Textarea placeholder="내용을 적어주세요." onChange={onChangeContents}></style.Textarea>
+                            <style.Textarea placeholder="내용을 적어주세요." onChange={onChangeContents} defaultValue={data?.fetchBoard.contents}></style.Textarea>
                             <style.ErrorMessage>{errorContents}</style.ErrorMessage>
                         </style.InputBox>
                         <style.InputBox>
@@ -68,8 +68,8 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                     </style.Contents>
                     <style.ButtonBox>
                         {isEdit ? 
-                        <style.YellowButton changeColor={changeColor}>수정하기</style.YellowButton> :
-                        <style.YellowButton changeColor={changeColor}>등록하기</style.YellowButton>
+                        <style.YellowButton isActive={isActive}>수정하기</style.YellowButton> :
+                        <style.YellowButton isActive={isActive}>등록하기</style.YellowButton>
                         }
                     </style.ButtonBox>
                 </style.Form>

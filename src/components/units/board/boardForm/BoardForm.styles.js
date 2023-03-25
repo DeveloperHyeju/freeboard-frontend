@@ -132,4 +132,4 @@ export const ButtonBox = styled.div({
 export const YellowButton = styled.button({
     padding: "1.4rem 6rem",
     fontWeight: "500",
-}, ({changeColor}) => ({backgroundColor:changeColor ? "#ffd600" : "#BDBDBD"}));
+}, ({isActive}) => ({backgroundColor:isActive ? "#ffd600" : "#BDBDBD"}));

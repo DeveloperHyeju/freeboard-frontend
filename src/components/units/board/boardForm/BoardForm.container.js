@@ -5,7 +5,7 @@ import BoardFormUI from "./BoardForm.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardForm.queries";
 
 
-const BoardForm = ({isEdit}) => {
+const BoardForm = ({isEdit, data}) => {
 
     const [ writer, setWriter ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -17,56 +17,61 @@ const BoardForm = ({isEdit}) => {
     const [ errorTitle, setErrorTitle ] = useState('');
     const [ errorContents, setErrorContents ] = useState('');
 
-    const [ changeColor, setChangeColor ] = useState(false);
+    const [ isActive, setIsActive ] = useState(false);
 
     const [ createBoard ] = useMutation(CREATE_BOARD);
     const [ updateBoard ] = useMutation(UPDATE_BOARD);
 
     const router = useRouter();
 
+
     const onChangeWriter = (e) => {
         const { value } = e.target;
         setWriter(value);
 
         if (value && password && title && contents) {
-            setChangeColor(true);
+            setIsActive(true);
         } else {
-            setChangeColor(false);
+            setIsActive(false);
         }
     };
+
 
     const onChangePassword = (e) => {
         const { value } = e.target;
         setPassword(value);
 
         if (writer && value && title && contents) {
-            setChangeColor(true);
+            setIsActive(true);
         } else {
-            setChangeColor(false);
+            setIsActive(false);
         }
     };
+
 
     const onChangeTitle = (e) => {
         const { value } = e.target;
         setTitle(value);
 
         if (writer && password && value && contents) {
-            setChangeColor(true);
+            setIsActive(true);
         } else {
-            setChangeColor(false);
+            setIsActive(false);
         }
     };
+
 
     const onChangeContents = (e) => {
         const { value } = e.target;
         setContents(value);
 
         if (writer && password && title && value) {
-            setChangeColor(true);
+            setIsActive(true);
         } else {
-            setChangeColor(false);
+            setIsActive(false);
         }
     };
+
 
     const onClickSubmitPost = async(e) => {
         e.preventDefault();
@@ -114,45 +119,27 @@ const BoardForm = ({isEdit}) => {
     const onClickUpdatePost = async(e) => {
         e.preventDefault();
 
-        if (!writer) {
-            setErrorWriter("작성자를 적어주세요.");
-        }
+        const updateVariables = {
+            updateBoardInput: {},
+            password,
+            boardId: router.query.boardId,
+        };
 
-        if (!password) {
-            setErrorPassword("비밀번호를 적어주세요.");
-        }
+        if (title) updateVariables.updateBoardInput.title = title;
+        if (contents) updateVariables.updateBoardInput.contents = contents;
 
-        if (!title) {
-            setErrorTitle("제목을 적어주세요.");
-        }
+        try{
+            const result = await updateBoard({
+                variables: updateVariables,
+            });
 
-        if (!contents) {
-            setErrorContents("내용을 적어주세요.")
-        }
-
-
-        if (writer && password && title && contents) {
-
-            try{
-                const result = await updateBoard({
-                    variables: {
-                        updateBoardInput: {
-                            title,
-                            contents,
-                        },
-                        password,
-                        boardId: router.query.boardId,
-                    }
-                });
-    
-                router.push(`/boards/${router.query.boardId}`);
-            } catch (err) {
-                alert(err.message);
-            }
-
+            router.push(`/boards/${router.query.boardId}`);
+        } catch (err) {
+            alert(err.message);
         }
 
     };
+    
 
     return <BoardFormUI 
                 onChangeWriter={onChangeWriter}
@@ -165,8 +152,9 @@ const BoardForm = ({isEdit}) => {
                 errorPassword={errorPassword}
                 errorTitle={errorTitle}
                 errorContents={errorContents}
-                changeColor={changeColor}
-                isEdit={isEdit}/>;
+                isActive={isActive}
+                isEdit={isEdit}
+                data={data} />;
 
 };
 
