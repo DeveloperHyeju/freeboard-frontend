@@ -129,7 +129,7 @@ const BoardForm = ({isEdit, data}) => {
         if (contents) updateVariables.updateBoardInput.contents = contents;
 
         try{
-            const result = await updateBoard({
+            await updateBoard({
                 variables: updateVariables,
             });
 

@@ -121,7 +121,7 @@ export const BoardButtonBox = styled.div({
     justifyContent: "center",
     gap: "2.4rem",
     alignItems: "center",
-    padding: "8rem 0",
+    paddingTop: "8rem",
 });
 
 

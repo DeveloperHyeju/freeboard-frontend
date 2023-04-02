@@ -1,5 +1,5 @@
 
-import { Global } from "@emotion/react"
+import { Global } from "@emotion/react";
 import { reset } from "@/styles/reset";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
