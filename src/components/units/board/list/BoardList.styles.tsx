@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import writeIcon from "../../../../../public/icon/write_icon.png"
 
 
 export const Wrap = styled.div({
@@ -15,14 +14,14 @@ export const ContentsWrap = styled.div({
     flex: "1 1 auto",
 });
 
-export const BoardPosts = styled.div({
+export const BoardList = styled.div({
     width: "100%",
     borderTop: "1px solid #000",
     borderBottom: "1px solid #000",
     textAlign: "center",
 });
 
-export const BoardPostsHeader = styled.div({
+export const BoardListHeader = styled.div({
     fontWeight: "500",
 });
 
@@ -32,15 +31,15 @@ export const Row = styled.div({
     padding: "1.2rem 0",
 });
 
-export const PostBasic = styled.div({
+export const BoardListItemBasic = styled.div({
     width: "10%",
 });
 
-export const PostTitle = styled.div({
+export const BoarListItemTitle = styled.div({
     width: "70%",
 });
 
-export const LinkPostTitle = styled.div({
+export const BoardListItemLinkTitle = styled.div({
     width: "70%",
     cursor: "pointer",
     
@@ -50,7 +49,7 @@ export const LinkPostTitle = styled.div({
     },
 });
 
-export const BoardPostsBody = styled.div({
+export const BoardListBody = styled.div({
     color: "#4F4F4F",
 });
 
@@ -60,7 +59,7 @@ export const ButtonBox = styled.div({
     padding: "4rem 0",
 });
 
-export const NewBoardButton = styled.button({
+export const CreateBoardButton = styled.button({
     border: "1px solid #F2F2F2",
     borderRadius: "1rem",
     padding: "1.4rem 1.6rem",
@@ -75,6 +74,6 @@ export const NewBoardButton = styled.button({
         content: "''",
         width: "2.4rem",
         height: "2.4rem",
-        background: `url('${writeIcon.src}') no-repeat center center / 1.7rem`,
+        background: "url('/icon/write_icon.png') no-repeat center center / 1.7rem",
     },
 });

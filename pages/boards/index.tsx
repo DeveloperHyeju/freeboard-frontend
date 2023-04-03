@@ -1,9 +1,9 @@
-import BoardPosts from "@/src/components/units/board/boardPosts/BoardPosts.container";
+import BoardList from "@/src/components/units/board/list/BoardList.container";
 
 
 const BoardPostsPage = () => {
 
-    return <BoardPosts />;
+    return <BoardList />;
 
 };
 

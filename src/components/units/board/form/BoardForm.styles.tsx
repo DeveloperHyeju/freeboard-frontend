@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import plusIcon from "../public/icon/add_icon.png";
 
 
 export const Wrap = styled.div({
@@ -105,7 +104,7 @@ export const PhotoBox = styled.li({
         content: "''",
         width: "2.4rem",
         height: "2.4rem",
-        background: `url(${plusIcon.src}) no-repeat center center / 1.4rem 1.4rem`
+        background: "url('/icon/add_icon.png') no-repeat center center / 1.4rem 1.4rem",
     },
 });
 
@@ -131,6 +130,5 @@ export const ButtonBox = styled.div({
 
 export const YellowButton = styled.button({
     padding: "1.4rem 6rem",
-    backgroundColor: "#ffd600",
     fontWeight: "500",
-});
+}, ({isActive}) => ({backgroundColor:isActive ? "#ffd600" : "#BDBDBD"}));

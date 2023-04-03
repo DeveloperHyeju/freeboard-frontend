@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import BoardCommentList from "./baordCommentList/BoardCommentList.container";
-import BoardCommentForm from "./boardCommentForm/boardCommentForm.container";
+import BoardCommentList from "./list/BoardCommentList.container";
+import BoardCommentForm from "./form/BoardCommentForm.container";
 
 
 const Wrap = styled.div({

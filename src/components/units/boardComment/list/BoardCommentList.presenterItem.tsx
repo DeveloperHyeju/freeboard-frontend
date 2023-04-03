@@ -1,7 +1,6 @@
 import { setDate } from "@/src/commons/libraries/utils";
-import RatingComponent from "@/src/components/commons/RatingComponent";
 import { useState } from "react";
-import BoardCommentForm from "../boardCommentForm/boardCommentForm.container";
+import BoardCommentForm from "../form/BoardCommentForm.container";
 import * as style from "./BoardCommentList.styles";
 
 
@@ -23,9 +22,6 @@ const BoardCommentListUIItem = ({comment}) => {
                         <style.Comment>
                             <style.CommentInfo>
                                 <style.CommentWriter>{comment.writer}</style.CommentWriter>
-                                <style.CommentRating>
-                                    <RatingComponent rating={comment.rating} />
-                                </style.CommentRating>
                             </style.CommentInfo>
                             <style.CommentContents>{comment.contents}</style.CommentContents>
                             <style.CommentDate>{setDate(comment.createdAt)}</style.CommentDate>

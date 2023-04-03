@@ -1,8 +1,7 @@
-import RatingComponent from "@/src/components/commons/RatingComponent";
-import * as style from "./boardCommentForm.styles";
+import * as style from "./BoardCommentForm.styles";
 
 
-const BoardCommentFormUI = ({onChangeWriter, onChangePassword, onChangeContents, onClickChangeRating, writer, password, rating, contents, setWriter, setContents, onClickCreateBoardComment, onClickUpdateBoardComment, isEdit, comment}) => {
+const BoardCommentFormUI = ({onChangeWriter, onChangePassword, onChangeContents, writer, password, contents, setWriter, setContents, onClickCreateBoardComment, onClickUpdateBoardComment, isEdit, comment}) => {
 
     console.log(writer);
 
@@ -11,9 +10,6 @@ const BoardCommentFormUI = ({onChangeWriter, onChangePassword, onChangeContents,
             <style.Info isEdit={isEdit}>
                 <style.InfoInput type="text" value={isEdit ? comment?.writer : writer} placeholder="작성자" onChange={onChangeWriter} />
                 <style.InfoInput type="password" value={password} placeholder="비밀번호" onChange={onChangePassword} />
-                <style.StarBox><RatingComponent rating={rating}
-                                                onClickChangeRating={onClickChangeRating}
-                                                isRating={true} /></style.StarBox>
             </style.Info>
             <style.Contents>
                 <style.ContentsInput type="text"

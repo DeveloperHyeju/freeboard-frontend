@@ -1,4 +1,4 @@
-import BoardForm from "@/src/components/units/board/boardForm/BoardForm.container";
+import BoardForm from "@/src/components/units/board/form/BoardForm.container";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 

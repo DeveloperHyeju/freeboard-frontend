@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import BoardPostsUI from "./BoardPosts.presenter";
-import FETCH_BOARDS from "./BoardPosts.queries";
+import BoardListUI from "./BoardList.presenter";
+import FETCH_BOARDS from "./BoardList.queries";
 
 
-const BoardPosts = () => {
+const BoardList = () => {
 
     const router = useRouter();
     const { data } = useQuery(FETCH_BOARDS);
@@ -15,16 +15,16 @@ const BoardPosts = () => {
     };
 
 
-    const onClickMoveToBoardWrite = () => {
-        router.push('/boards/new');
+    const onClickMoveToBoardCreate = () => {
+        router.push('/boards/create');
     };
 
 
-    return <BoardPostsUI data={data} 
+    return <BoardListUI data={data} 
                         onClickMoveToBoardDetail={onClickMoveToBoardDetail}
-                        onClickMoveToBoardWrite={onClickMoveToBoardWrite} />;
+                        onClickMoveToBoardCreate={onClickMoveToBoardCreate} />;
 
 };
 
 
-export default BoardPosts;
+export default BoardList;
