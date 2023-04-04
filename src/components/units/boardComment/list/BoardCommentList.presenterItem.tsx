@@ -8,9 +8,11 @@ const BoardCommentListUIItem = ({comment}: IBoardCommentListUIItemProps) => {
     const [ isEdit, setIsEdit ] = useState(false);
 
 
-    return <BoardComment comment={comment}
+    return (
+        <BoardComment comment={comment}
                         setIsEdit={setIsEdit}
-                        isEdit={isEdit} />;
+                        isEdit={isEdit} />
+    );
 
 };
 
