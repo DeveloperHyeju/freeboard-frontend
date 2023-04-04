@@ -1,12 +1,14 @@
+import { IMutation, IMutationCreateBoardCommentArgs, IMutationUpdateBoardCommentArgs } from "@/src/commons/types/generated/types";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
 import BoardCommentFormUI from "./BoardCommentForm.presenter";
 import { CREATE_BOARD_COMMENT, UPDATE_BOARD_COMMENT } from "./BoardCommentForm.queries";
+import { IBoardCommentFormProps, IUpdateBoardCommentVriables } from "./BoardCommentForm.types";
 
 
-const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
+const BoardCommentForm = ({isEdit=false, setIsEdit=f=>f, comment}: IBoardCommentFormProps) => {
 
     const router = useRouter();
 
@@ -14,23 +16,23 @@ const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
     const [ password, setPassword ] = useState("");
     const [ contents, setContents ] = useState("");
 
-    const [ createBoardComment ] = useMutation(CREATE_BOARD_COMMENT);
-    const [ updateBoardComment ] = useMutation(UPDATE_BOARD_COMMENT);
+    const [ createBoardComment ] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
+    const [ updateBoardComment ] = useMutation<Pick<IMutation, "updateBoardComment">, IMutationUpdateBoardCommentArgs>(UPDATE_BOARD_COMMENT);
 
 
-    const onChangeWriter = (e) => {
+    const onChangeWriter = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setWriter(value);
     };
 
 
-    const onChangePassword = (e) => {
+    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setPassword(value);
     };
 
 
-    const onChangeContents = (e) => {
+    const onChangeContents = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
         setContents(value);
     };
@@ -63,30 +65,27 @@ const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
                         rating:3,
                         contents,
                     },
-                    boardId: router.query.boardId,
+                    boardId: String(router.query.boardId),
                 },
                 refetchQueries: [{
                     query: FETCH_BOARD_COMMENTS,
                     variables: {
-                        boardId: router.query.boardId,
+                        boardId: String(router.query.boardId),
                         page: 0,
                     }
                 }],
             });
 
-            setWriter("");
-            setPassword("");
-            setContents("");
 
             alert("댓글이 정상적으로 저장되었습니다.");
-        } catch (err) {
+        } catch (err: any) {
             alert(err.message);
         }
     };
 
 
     const onClickUpdateBoardComment = async () => {
-        const updateBoardCommentVariables = {
+        const updateBoardCommentVariables: IUpdateBoardCommentVriables = {
             updateBoardCommentInput: {},
             password,
             boardCommentId: comment._id,
@@ -100,7 +99,7 @@ const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
                 refetchQueries: [{
                     query: FETCH_BOARD_COMMENTS,
                     variables: {
-                        boardId: router.query.boardId,
+                        boardId: String(router.query.boardId),
                         page: 0,
                     }
                 }],
@@ -108,7 +107,7 @@ const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
 
             setIsEdit(false);
             alert("댓글이 정상적으로 수정되었습니다.");
-        } catch (err) {
+        } catch (err: any) {
             alert(err.message);
         }
     };
@@ -117,13 +116,11 @@ const BoardCommentForm = ({isEdit, setIsEdit, comment}) => {
     return <BoardCommentFormUI onChangeWriter={onChangeWriter}
                             onChangePassword={onChangePassword}
                             onChangeContents={onChangeContents}
+                            onClickCreateBoardComment={onClickCreateBoardComment}
+                            onClickUpdateBoardComment={onClickUpdateBoardComment}
                             writer={writer}
                             password={password}
                             contents={contents}
-                            setWriter={setWriter}
-                            setContents={setContents}
-                            onClickCreateBoardComment={onClickCreateBoardComment}
-                            onClickUpdateBoardComment={onClickUpdateBoardComment}
                             comment={comment}
                             isEdit={isEdit} />;
 

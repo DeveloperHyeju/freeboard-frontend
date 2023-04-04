@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IEditProps } from "./BoardCommentForm.types";
 
 
 export const Wrap = styled.div({
@@ -9,7 +10,7 @@ export const Info = styled.div({
     display: "flex",
     gap: "2.4rem",
     alignItems: "center",
-}, ({isEdit}) => ({
+}, ({isEdit}: IEditProps) => ({
     paddingTop: isEdit ? "2rem" : "0",
 }));
 
@@ -43,7 +44,7 @@ export const ContentsInput = styled.textarea({
         fontWeight: "500",
         color: "#BDBDBD",
     }
-}, ({isEdit}) => ({
+}, ({isEdit}: IEditProps) => ({
     height: isEdit ? "6.4rem" : "9rem",
 }));
 
@@ -61,7 +62,7 @@ export const WordCounter = styled.span({
 
 export const StoreCommentButton = styled.button({
     padding: "1.4rem 1.6rem",
-}, ({isEdit}) => ({
+}, ({isEdit=false}: IEditProps) => ({
     backgroundColor: isEdit ? "#FFD600" : "#000",
     color: isEdit ? "000" : "#FFF",
 }));

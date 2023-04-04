@@ -1,18 +1,19 @@
 import * as style from "./BoardForm.styles";
+import { IBoardFormUIProps } from "./BoardForm.types";
 
 
-const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onClickSubmitPost, onClickUpdatePost, errorWriter, errorPassword, errorTitle, errorContents, isActive, isEdit, data}) => {
+const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeContents, onClickCreateBoard, onClickUpdateBoard, errorWriter, errorPassword, errorTitle, errorContents, isActive, isEdit, data}: IBoardFormUIProps) => {
 
     return(
         <style.Wrap>
             <style.ContentsWrap>
-                <style.Form onSubmit={isEdit ? onClickUpdatePost : onClickSubmitPost}>
+                <style.Form>
                     <style.Title>게시물 {isEdit ? "수정" : "등록"}</style.Title>
                     <style.Contents>
                         <style.InputWrap>
                             <style.InputBox>
                                 <style.InputTitle>작성자</style.InputTitle>
-                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} value={data?.fetchBoard.writer} />
+                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} defaultValue={data?.fetchBoard.writer||undefined} />
                                 <style.ErrorMessage>{errorWriter}</style.ErrorMessage>
                             </style.InputBox>
                             <style.InputBox>
@@ -34,7 +35,7 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                         <style.InputBox>
                             <style.InputTitle>주소</style.InputTitle>
                             <style.AddressBox>
-                                <style.Input size="2" placeholder="07250" />
+                                <style.Input size={2} placeholder="07250" />
                                 <style.AddressSearchButton>우편번호 검색</style.AddressSearchButton>
                             </style.AddressBox>
                             <style.Input />
@@ -68,8 +69,8 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                     </style.Contents>
                     <style.ButtonBox>
                         {isEdit ? 
-                        <style.YellowButton isActive={isActive}>수정하기</style.YellowButton> :
-                        <style.YellowButton isActive={isActive}>등록하기</style.YellowButton>
+                        <style.YellowButton isActive={isActive} onClick={onClickUpdateBoard}>수정하기</style.YellowButton> :
+                        <style.YellowButton isActive={isActive} onClick={onClickCreateBoard}>등록하기</style.YellowButton>
                         }
                     </style.ButtonBox>
                 </style.Form>

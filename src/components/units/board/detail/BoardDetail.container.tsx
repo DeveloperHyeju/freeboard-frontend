@@ -1,3 +1,4 @@
+import { IQuery, IQueryFetchBoardArgs } from "@/src/commons/types/generated/types";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardDetailUI from "./BoardDetail.presenter";
@@ -8,9 +9,9 @@ const BoardDetail = () => {
 
     const router = useRouter();
     
-    const { data } = useQuery(FETCH_BOARD, {
+    const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD, {
         variables: {
-            boardId: router.query.boardId,
+            boardId: String(router.query.boardId),
         }
     });
 
@@ -20,7 +21,7 @@ const BoardDetail = () => {
     };
 
 
-    const onClickMoveToBoardEdit = (boardId) => {
+    const onClickMoveToBoardEdit = (boardId: string | undefined) => {
         console.log(boardId);
         router.push(`/boards/${boardId}/edit`);
     };

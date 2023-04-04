@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IYellowButtonProps } from "./BoardForm.types";
 
 
 export const Wrap = styled.div({
@@ -14,7 +15,7 @@ export const ContentsWrap = styled.div({
     boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
 });
 
-export const Form = styled.form({
+export const Form = styled.div({
     width: "100%",
     padding: "8rem 10.2rem",
     display: "flex",
@@ -131,4 +132,4 @@ export const ButtonBox = styled.div({
 export const YellowButton = styled.button({
     padding: "1.4rem 6rem",
     fontWeight: "500",
-}, ({isActive}) => ({backgroundColor:isActive ? "#ffd600" : "#BDBDBD"}));
+}, ({isActive}: IYellowButtonProps) => ({backgroundColor:isActive ? "#ffd600" : "#BDBDBD"}));

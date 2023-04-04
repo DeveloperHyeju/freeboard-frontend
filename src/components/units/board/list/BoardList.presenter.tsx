@@ -1,10 +1,12 @@
 import { setDate } from "@/src/commons/libraries/utils";
 import * as style from "./BoardList.styles";
+import { IBoardListProps } from "./BoardList.types";
+import { IBoard } from '@/src/commons/types/generated/types';
 
 
-const BoardListUI = ({data, onClickMoveToBoardDetail, onClickMoveToBoardCreate}) => {
+const BoardListUI = ({data, onClickMoveToBoardDetail, onClickMoveToBoardCreate}: IBoardListProps) => {
 
-    const boardPosts = data?.fetchBoards.map((board) => {
+    const boardPosts = data?.fetchBoards.map((board: IBoard) => {
         return(
             <style.Row key={board._id}>
                 <style.BoardListItemBasic>

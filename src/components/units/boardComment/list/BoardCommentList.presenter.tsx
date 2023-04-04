@@ -1,10 +1,11 @@
 import BoardCommentListUIItem from "./BoardCommentList.presenterItem";
 import * as style from "./BoardCommentList.styles";
+import { IBoardCommentListUIProps } from "./BoardCommentList.types";
 
 
-const BoardCommentListUI = ({data}) => {    
+const BoardCommentListUI = ({data}:IBoardCommentListUIProps) => {    
 
-    const boardCommentList = data?.fetchBoardComments.map((comment) =>  <BoardCommentListUIItem key={comment._id} 
+    const boardCommentList = data?.fetchBoardComments.map((comment: any) =>  <BoardCommentListUIItem key={comment._id} 
                                                                                                 comment={comment} />);
 
 

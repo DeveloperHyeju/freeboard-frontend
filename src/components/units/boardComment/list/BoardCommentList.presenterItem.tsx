@@ -2,9 +2,10 @@ import { setDate } from "@/src/commons/libraries/utils";
 import { useState } from "react";
 import BoardCommentForm from "../form/BoardCommentForm.container";
 import * as style from "./BoardCommentList.styles";
+import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
 
-const BoardCommentListUIItem = ({comment}) => {
+const BoardCommentListUIItem = ({comment}: IBoardCommentListUIItemProps) => {
 
     const [ isEdit, setIsEdit ] = useState(false);
 

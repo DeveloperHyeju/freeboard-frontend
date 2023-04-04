@@ -1,11 +1,13 @@
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "@/src/commons/types/generated/types";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, MouseEventHandler, useState } from "react";
 import BoardFormUI from "./BoardForm.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardForm.queries";
+import { IBoardFormProps, IUpdateBoardVariables } from "./BoardForm.types";
 
 
-const BoardForm = ({isEdit, data}) => {
+const BoardForm = ({isEdit, data}: IBoardFormProps) => {
 
     const [ writer, setWriter ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -19,13 +21,13 @@ const BoardForm = ({isEdit, data}) => {
 
     const [ isActive, setIsActive ] = useState(false);
 
-    const [ createBoard ] = useMutation(CREATE_BOARD);
-    const [ updateBoard ] = useMutation(UPDATE_BOARD);
+    const [ createBoard ] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD);
+    const [ updateBoard ] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
     const router = useRouter();
 
 
-    const onChangeWriter = (e) => {
+    const onChangeWriter = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setWriter(value);
 
@@ -37,7 +39,7 @@ const BoardForm = ({isEdit, data}) => {
     };
 
 
-    const onChangePassword = (e) => {
+    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setPassword(value);
 
@@ -49,7 +51,7 @@ const BoardForm = ({isEdit, data}) => {
     };
 
 
-    const onChangeTitle = (e) => {
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setTitle(value);
 
@@ -61,7 +63,7 @@ const BoardForm = ({isEdit, data}) => {
     };
 
 
-    const onChangeContents = (e) => {
+    const onChangeContents = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
         setContents(value);
 
@@ -73,9 +75,7 @@ const BoardForm = ({isEdit, data}) => {
     };
 
 
-    const onClickSubmitPost = async(e) => {
-        e.preventDefault();
-
+    const onClickCreateBoard = async() => {
         if (!writer) {
             setErrorWriter("작성자를 적어주세요.");
         }
@@ -106,8 +106,8 @@ const BoardForm = ({isEdit, data}) => {
                     }
                 });
     
-                router.push(`/boards/${result.data.createBoard._id}`);
-            } catch (err) {
+                router.push(`/boards/${result?.data?.createBoard._id}`);
+            } catch (err: any) {
                 console.log(err.message);
             }
 
@@ -116,25 +116,23 @@ const BoardForm = ({isEdit, data}) => {
     };
 
 
-    const onClickUpdatePost = async(e) => {
-        e.preventDefault();
-
-        const updateVariables = {
+    const onClickUpdateBoard = async() => {
+        const updateBoardVariables: IUpdateBoardVariables = {
             updateBoardInput: {},
             password,
-            boardId: router.query.boardId,
+            boardId: String(router.query.boardId),
         };
 
-        if (title) updateVariables.updateBoardInput.title = title;
-        if (contents) updateVariables.updateBoardInput.contents = contents;
+        if (title) updateBoardVariables.updateBoardInput.title = title;
+        if (contents) updateBoardVariables.updateBoardInput.contents = contents;
 
         try{
             await updateBoard({
-                variables: updateVariables,
+                variables: updateBoardVariables,
             });
 
             router.push(`/boards/${router.query.boardId}`);
-        } catch (err) {
+        } catch (err: any) {
             alert(err.message);
         }
 
@@ -146,8 +144,8 @@ const BoardForm = ({isEdit, data}) => {
                 onChangePassword={onChangePassword}
                 onChangeTitle={onChangeTitle}
                 onChangeContents={onChangeContents}
-                onClickSubmitPost={onClickSubmitPost}
-                onClickUpdatePost={onClickUpdatePost}
+                onClickCreateBoard={onClickCreateBoard}
+                onClickUpdateBoard={onClickUpdateBoard}
                 errorWriter={errorWriter}
                 errorPassword={errorPassword}
                 errorTitle={errorTitle}
