@@ -13,7 +13,7 @@ const BoardFormUI = ({onChangeWriter, onChangePassword, onChangeTitle, onChangeC
                         <style.InputWrap>
                             <style.InputBox>
                                 <style.InputTitle>작성자</style.InputTitle>
-                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} defaultValue={data?.fetchBoard.writer||undefined} />
+                                <style.Input type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter} defaultValue={data?.fetchBoard.writer || ""} />
                                 <style.ErrorMessage>{errorWriter}</style.ErrorMessage>
                             </style.InputBox>
                             <style.InputBox>

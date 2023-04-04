@@ -1,4 +1,4 @@
-import { IBoard } from "@/src/commons/types/generated/types"
+import { IBoardComment } from "@/src/commons/types/generated/types"
 import { ChangeEvent, Dispatch, SetStateAction } from "react"
 
 
@@ -6,7 +6,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react"
 export interface IBoardCommentFormProps {
   isEdit?: boolean
   setIsEdit?: Dispatch<SetStateAction<boolean>>
-  comment?: IBoard
+  comment?: IBoardComment
 }
 
 interface IUpdateBoardCommentInput {
@@ -26,11 +26,9 @@ export interface IBoardCommentFormUIProps {
   onChangeContents: (e: ChangeEvent<HTMLTextAreaElement>) => void
   onClickCreateBoardComment: () => void
   onClickUpdateBoardComment: () => void
-  writer: string
-  password: string
   contents: string
   isEdit: boolean
-  comment?: IBoard
+  comment?: IBoardComment
 }
 
 export interface IEditProps {

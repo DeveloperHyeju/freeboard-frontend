@@ -21,9 +21,8 @@ const BoardDetail = () => {
     };
 
 
-    const onClickMoveToBoardEdit = (boardId: string | undefined) => {
-        console.log(boardId);
-        router.push(`/boards/${boardId}/edit`);
+    const onClickMoveToBoardEdit = () => {
+        router.push(`/boards/${String(router.query.boardId)}/edit`);
     };
 
 
