@@ -1,11 +1,10 @@
-import { IBoardComment, IQuery } from "@/src/commons/types/generated/types"
 
 
 
 export interface IBoardCommentListUIProps {
-  data?: Pick<IQuery, "fetchBoardComments">
+  data: any
 }
 
 export interface IBoardCommentListUIItemProps {
-  comment: IBoardComment
+  comment: any
 }

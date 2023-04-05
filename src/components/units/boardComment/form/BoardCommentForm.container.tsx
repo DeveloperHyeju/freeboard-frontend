@@ -85,8 +85,6 @@ const BoardCommentForm = ({isEdit=false, setIsEdit=f=>f, comment}: IBoardComment
 
 
     const onClickUpdateBoardComment = async () => {
-        if (comment === undefined) return;
-        
         const updateBoardCommentVariables: IUpdateBoardCommentVriables = {
             updateBoardCommentInput: {},
             password,
@@ -120,6 +118,8 @@ const BoardCommentForm = ({isEdit=false, setIsEdit=f=>f, comment}: IBoardComment
                             onChangeContents={onChangeContents}
                             onClickCreateBoardComment={onClickCreateBoardComment}
                             onClickUpdateBoardComment={onClickUpdateBoardComment}
+                            writer={writer}
+                            password={password}
                             contents={contents}
                             comment={comment}
                             isEdit={isEdit} />;

@@ -13,8 +13,8 @@ const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}: IBoa
                         <style.Profile>
                             <style.ProfileIcon src="/icon/user_icon.png" alt="프로필 이미지" />
                             <style.ProfileInfo>
-                                <style.ProfileName>{data?.fetchBoard.writer}</style.ProfileName>
-                                <style.ProfileDate>{setDate(data?.fetchBoard.updatedAt)}</style.ProfileDate>
+                                <style.ProfileName>{data?.fetchBoard?.writer}</style.ProfileName>
+                                <style.ProfileDate>{setDate(data?.fetchBoard?.updatedAt)}</style.ProfileDate>
                             </style.ProfileInfo>
                         </style.Profile>
                         <style.Features>
@@ -23,12 +23,12 @@ const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}: IBoa
                         </style.Features>
                     </style.BoardHeader>
                     <style.Contents>
-                        <style.BoardTitle>{data?.fetchBoard.title}</style.BoardTitle>
-                        <style.BoardContents>{data?.fetchBoard.contents}</style.BoardContents>
+                        <style.BoardTitle>{data?.fetchBoard?.title}</style.BoardTitle>
+                        <style.BoardContents>{data?.fetchBoard?.contents}</style.BoardContents>
                     </style.Contents>
                     <style.LikeButtonBox>
-                        <style.LikeButton><img src="/icon/like_icon.png" alt="좋아요" />{data?.fetchBoard.likeCount}</style.LikeButton>
-                        <style.DisLikeButton><img src="/icon/dislike_icon.png" alt="싫어요" />{data?.fetchBoard.dislikeCount}</style.DisLikeButton>
+                        <style.LikeButton><img src="/icon/like_icon.png" alt="좋아요" />{data?.fetchBoard?.likeCount}</style.LikeButton>
+                        <style.DisLikeButton><img src="/icon/dislike_icon.png" alt="싫어요" />{data?.fetchBoard?.dislikeCount}</style.DisLikeButton>
                     </style.LikeButtonBox>
                 </style.Board>
             </style.ContentsWrap>
@@ -38,7 +38,7 @@ const BoardDetailUI = ({data, onClickMoveToBoards, onClickMoveToBoardEdit}: IBoa
                     목록으로
                 </style.BoardControlButton>
                 <style.BoardControlButton
-                    onClick={onClickMoveToBoardEdit}>
+                    onClick={e => onClickMoveToBoardEdit(data?.fetchBoard?._id)}>
                     수정하기
                 </style.BoardControlButton>
                 <style.BoardControlButton>삭제하기</style.BoardControlButton>
