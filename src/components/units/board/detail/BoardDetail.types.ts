@@ -1,8 +1,9 @@
-import { IQuery } from "@/src/commons/types/generated/types"
-
+import { IQuery } from "@/src/commons/types/generated/types";
 
 export interface IBoardDetailUIProps {
-  data?: Pick<IQuery, "fetchBoard">
-  onClickMoveToBoards: () => void
-  onClickMoveToBoardEdit: (boardId: string | undefined) => void
+  data?: Pick<IQuery, "fetchBoard">;
+  onClickMoveToBoards: () => void;
+  onClickMoveToBoardEdit: (boardId: string | undefined) => void;
+  onClickLikeBoard: () => void;
+  onClickDislikeBoard: () => void;
 }
