@@ -1,6 +1,7 @@
-import * as style from "./BaordDetail.styles";
+import * as style from "./BoardDetail.styles";
 import { setDate } from "@/src/commons/libraries/utils";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import ReactPlayer from "react-player";
 
 const BoardDetailUI = ({
   data,
@@ -38,6 +39,7 @@ const BoardDetailUI = ({
           <style.Contents>
             <style.BoardTitle>{data?.fetchBoard.title}</style.BoardTitle>
             <style.BoardContents>
+              {data?.fetchBoard.youtubeUrl && <ReactPlayer url={`${data?.fetchBoard.youtubeUrl}`} />}
               {data?.fetchBoard.contents}
             </style.BoardContents>
           </style.Contents>

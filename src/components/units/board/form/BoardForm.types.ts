@@ -9,6 +9,7 @@ export interface IBoardFormProps {
 interface IUpdateBoardInputVariables {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
 }
 
 export interface IUpdateBoardVariables {
