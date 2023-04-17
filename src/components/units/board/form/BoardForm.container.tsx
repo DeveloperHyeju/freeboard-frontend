@@ -79,7 +79,7 @@ const BoardForm = ({ isEdit, data }: IBoardFormProps) => {
     }
   };
 
-  const onChangeYoutubeUrl = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeYoutubeUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setYoutubeUrl(value);
   };
@@ -110,11 +110,14 @@ const BoardForm = ({ isEdit, data }: IBoardFormProps) => {
               password,
               title,
               contents,
+              youtubeUrl,
             },
           },
         });
 
-        router.push(`/boards/${result?.data?.createBoard._id}`);
+        
+
+        void router.push(`/boards/${result.data?.createBoard._id}`);
       } catch (err) {
         if (err instanceof Error) {
           alert(err.message);
@@ -132,13 +135,14 @@ const BoardForm = ({ isEdit, data }: IBoardFormProps) => {
 
     if (title) updateBoardVariables.updateBoardInput.title = title;
     if (contents) updateBoardVariables.updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardVariables.updateBoardInput.youtubeUrl = youtubeUrl;
 
     try {
       await updateBoard({
         variables: updateBoardVariables,
       });
 
-      router.push(`/boards/${router.query.boardId}`);
+      void router.push(`/boards/${String(router.query.boardId)}`);
     } catch (err) {
       if (err instanceof Error) {
         alert(err.message);
